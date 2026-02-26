@@ -1,0 +1,21 @@
+name: 'Setup Deps Includes'
+description: 'Downloads dependencies and builds compiler include args'
+
+inputs:
+  deps_list:
+    description: 'List of dependencies (e.g. org/repo@tag:path) separated by newlines.'
+    required: true
+  output_var_name:
+    description: 'Name of the output env variable.'
+    required: false
+    default: 'DEPS_COMPILER_ARGS'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup deps includes
+      shell: bash
+      run: ${{ github.action_path }}/script.sh
+      env:
+        DEPS_LIST: ${{ inputs.deps_list }}
+        OUTPUT_VAR_NAME: ${{ inputs.output_var_name }}
