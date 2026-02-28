@@ -1,6 +1,10 @@
 name: 'Setup Deps Includes'
 description: 'Downloads dependencies and builds compiler include args'
 
+branding:
+  icon: 'arrow-down-circle'
+  color: 'green'
+
 inputs:
   deps_list:
     description: 'List of dependencies (e.g. org/repo@tag:path) separated by newlines.'
