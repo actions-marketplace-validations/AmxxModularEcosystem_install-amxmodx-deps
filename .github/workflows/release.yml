@@ -1,0 +1,23 @@
+on:
+  push:
+    tags:
+      - "v*.*.*" # триггер на точный тег
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update floating tags
+        run: |
+          VERSION=${GITHUB_REF_NAME}          # v1.2.3
+          MINOR=$(echo $VERSION | cut -d. -f1-2)  # v1.2
+          MAJOR=$(echo $VERSION | cut -d. -f1)    # v1
+
+          git config user.name  "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git tag -fa $MINOR -m "Update $MINOR"
+          git tag -fa $MAJOR -m "Update $MAJOR"
+          git push origin $MINOR $MAJOR --force
