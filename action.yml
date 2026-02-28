@@ -1,5 +1,6 @@
 name: 'Setup Deps Includes'
 description: 'Downloads dependencies and builds compiler include args'
+author: ArKaNeMaN
 
 branding:
   icon: 'arrow-down-circle'
